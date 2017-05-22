@@ -17,13 +17,13 @@ var self = this;
 
 		App.engine('html', EJS.renderFile);
 
-        App.use(BodyParser.urlencoded({
-            extended: true
-        }));
-        App.use(BodyParser.json());
-        App.use(CookieParser());
-        App.use(Cors());
-        App.use(Express.static(Path.join(__dirname, 'public_html')));
+		App.use(BodyParser.urlencoded({
+			extended: true
+		}));
+		App.use(BodyParser.json());
+		App.use(CookieParser());
+		App.use(Cors());
+		App.use(Express.static(Path.join(__dirname, 'public_html')));
 
 		App.use('/api/company', CompanyRouter.GetRouter());
 

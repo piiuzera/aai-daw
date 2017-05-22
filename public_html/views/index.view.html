@@ -1,0 +1,19 @@
+<div ng-init="Init()">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8 text-center">
+				<h2>{{ disciplina.nome }}</h2>
+				<h4>{{ 'Professor: ' + disciplina.professor }}</h4>
+
+				<h4>
+					Alunos:
+					<p class="label label-default" ng-repeat="aluno in alunos">
+						{{ aluno }}
+					</p>
+				</h4>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,197 @@
+<div ng-init="Init()">
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="toolbar">
+                            <div class="nav navbar-nav">
+                                <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#newCompany" title="Nova Empresa">
+                                    <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                                    Nova Empresa
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>CNPJ</th>
+								<th>Cidade</th>
+								<th>Estado</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="company in companies">
+								<td>{{ company.name }}</td>
+								<td>{{ company.cnpj }}</td>
+								<td>{{ company.city }}</td>
+								<td>{{ company.state }}</td>
+								<td class="text-center">
+									<button class="btn btn-default" ng-click="FindByIdCompany(company.id)">
+										<i class="glyphicon glyphicon-pencil"></i>
+									</button>
+								</td>
+								<td class="text-center" ng-click="ConfirmDeleteCompany(company.id)">
+									<button class="btn btn-danger">
+										<i class="glyphicon glyphicon-trash"></i>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="newCompany" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						Nova Empresa
+					</h4>
+				</div>
+
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label>Razão Social</label>
+							<input type="text" class="form-control" ng-model="company.name" placeholder="Razão Social" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>CNPJ</label>
+							<input type="text" class="form-control" ng-model="company.cnpj" placeholder="CNPJ" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>CEP</label>
+							<input type="text" class="form-control" ng-blur="GetAddressByZipcode(company)" ng-model="company.zipcode" maxlength="8" placeholder="CEP" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>Logradouro</label>
+							<input type="text" class="form-control" ng-model="company.street" placeholder="Logradouro" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>N°</label>
+							<input type="text" class="form-control" ng-model="company.number" placeholder="N°" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>Complemento</label>
+							<input type="text" class="form-control" ng-model="company.complement" placeholder="Complemento">
+						</div>
+
+						<div class="form-group">
+							<label>Bairro</label>
+							<input type="text" class="form-control" ng-model="company.district" placeholder="Bairro" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>Cidade</label>
+							<input type="text" class="form-control" ng-model="company.city" placeholder="Cidade" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>Estado</label>
+							<input type="text" class="form-control" ng-model="company.state" placeholder="Estado" required="required">
+						</div>
+					</form>
+				</div>
+
+				<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+				<button type="button" class="btn btn-primary" ng-click="CreateCompany($event)" data-loading-text="Salvando" class="btn btn-primary" autocomplete="off">Salvar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="editCompany" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						Editar Empresa
+					</h4>
+				</div>
+
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label>Razão Social</label>
+							<input type="text" class="form-control" ng-model="editCompany.name" placeholder="Razão Social" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>CNPJ</label>
+							<input type="text" class="form-control" ng-model="editCompany.cnpj" placeholder="CNPJ" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>CEP</label>
+							<input type="text" class="form-control" ng-blur="GetAddressByZipcode(editCompany)" ng-model="editCompany.zipcode" maxlength="8" placeholder="CEP" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>Logradouro</label>
+							<input type="text" class="form-control" ng-model="editCompany.street" placeholder="Logradouro" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>N°</label>
+							<input type="text" class="form-control" ng-model="editCompany.number" placeholder="N°" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>Complemento</label>
+							<input type="text" class="form-control" ng-model="editCompany.complement" placeholder="Complemento">
+						</div>
+
+						<div class="form-group">
+							<label>Bairro</label>
+							<input type="text" class="form-control" ng-model="editCompany.district" placeholder="Bairro" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>Cidade</label>
+							<input type="text" class="form-control" ng-model="editCompany.city" placeholder="Cidade" required="required">
+						</div>
+
+						<div class="form-group">
+							<label>Estado</label>
+							<input type="text" class="form-control" ng-model="editCompany.state" placeholder="Estado" required="required">
+						</div>
+					</form>
+				</div>
+
+				<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+				<button type="button" class="btn btn-primary" ng-click="UpdateCompany($event, editCompany.id)" data-loading-text="Salvando" class="btn btn-primary" autocomplete="off">Salvar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

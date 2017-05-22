@@ -1,0 +1,24 @@
+{
+  "name": "aai-daw",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "null"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public_html/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4",
+    "bootstrap": "^3.3.7",
+    "angular-route": "^1.6.4",
+    "toastr": "^2.1.3"
+  }
+}

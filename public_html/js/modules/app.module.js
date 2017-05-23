@@ -7,12 +7,12 @@ angular.module('App').config(['$locationProvider', function($locationProvider) {
 angular.module('App').config(function($routeProvider) {
 	$routeProvider
 	.when('/', {
-		templateUrl: 'views/index.view.html',
-		controller:  'indexController'
+		templateUrl : 'views/index.view.html',
+		controller 	: 'indexController'
 	})
 	.when('/company', {
-		templateUrl: 'views/company.view.html',
-		controller:  'companyController'
+		templateUrl	: 'views/company.view.html',
+		controller 	: 'companyController'
 	})
 	.otherwise({
 			redirectTo: '/'

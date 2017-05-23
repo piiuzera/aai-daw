@@ -4,7 +4,7 @@ var BodyParser      = require('body-parser');
 var CompanyRouter   = require('./router/CompanyRouter');
 var CookieParser    = require('cookie-parser');
 var Cors            = require('cors');
-var EJS             = require('EJS');
+var EJS             = require('ejs');
 var Express         = require('express');
 var Path            = require('path');
 

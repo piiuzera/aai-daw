@@ -47,7 +47,7 @@ angular.module('App')
 			var callbackCreateCompany = function(element, response) {
 				$(element).button('reset');
 
-				if (response.status > 399) {
+				if (!response.data.res) {
 					Message.Show(response.data.message, 'Erro ao Cadastrar', 'error');
 
 					return;
@@ -76,7 +76,7 @@ angular.module('App')
 			var callbackUpdateCompany = function(element, response) {
 				$(element).button('reset');
 
-				if (response.status > 399) {
+				if (!response.data.res) {
 					Message.Show(response.data.message, 'Erro ao Atualizar', 'error');
 
 					return;
@@ -118,7 +118,7 @@ angular.module('App')
 			};
 
 			var callbackDeleteCompany = function(id, response) {
-				if (response.status > 399) {
+				if (!response.data.res) {
 					Message.Show(response.data.message, 'Erro ao Atualizar', 'error');
 
 					return;
@@ -144,8 +144,8 @@ angular.module('App')
 			};
 
 			var callbackFindAll = function(response) {
-				if (response.status > 399) {
-					Message.Show('Problemas ao estabelecer conexão com o servidor!',
+				if (!response.data.res) {
+					Message.Show(response.data.message,
 								 'Erro ao Conectar',
 								 'error');
 
@@ -162,8 +162,8 @@ angular.module('App')
 			};
 
 			var callbackFindById = function(response) {
-				if (response.status > 399) {
-					Message.Show('Problemas ao estabelecer conexão com o servidor!',
+				if (!response.data.res) {
+					Message.Show(response.data.message,
 								 'Erro ao Conectar',
 								 'error');
 

@@ -51,8 +51,6 @@ angular.module('App')
 
 				$(element).button('loading');
 
-				console.log($scope.editEmployee.company);
-
 				if ($scope.editEmployee.company) {
 					$scope.editEmployee.fk_company = $scope.editEmployee.company.id;
 				} else {

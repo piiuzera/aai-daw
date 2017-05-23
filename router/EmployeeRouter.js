@@ -1,6 +1,6 @@
 "use strict";
 
-var CompanyApi 	= require('../api/CompanyApi');
+var EmployeeApi	= require('../api/EmployeeApi');
 var Express 	= require('express');
 var Validator 	= require('validatorjs');
 
@@ -12,14 +12,11 @@ var self = this;
 
 	Router.post('/create', function(request, response) {
 		var validation = new Validator(request.body, {
+			fk_company	: 'required',
+			fk_office	: 'required',
 			name 		: 'required',
-			cnpj 		: 'required',
-			street 		: 'required',
-			number 		: 'required',
-			district 	: 'required',
-			zipcode 	: 'required',
-			city 		: 'required',
-			state 		: 'required'
+			email 		: 'required',
+			salary 		: 'required'
 		});
 
 		if (validation.fails()) {
@@ -33,26 +30,23 @@ var self = this;
 			return;
 		}
 
-		var company = CompanyApi.Create(request.body);
+		var employee = EmployeeApi.Create(request.body);
 
 		response.status(201).json({
 			res: true,
 			date: new Date(),
-			company: company,
-			message: 'Empresa cadastrada com sucesso!'
+			employee: employee,
+			message: 'Funcionário cadastrado com sucesso!'
 		});
 	});
 
 	Router.put('/update/:id', function(request, response) {
 		var validation = new Validator(request.body, {
+			fk_company	: 'required',
+			fk_office	: 'required',
 			name 		: 'required',
-			cnpj 		: 'required',
-			street 		: 'required',
-			number 		: 'required',
-			district 	: 'required',
-			zipcode 	: 'required',
-			city 		: 'required',
-			state 		: 'required'
+			email 		: 'required',
+			salary 		: 'required'
 		});
 
 		if (validation.fails()) {
@@ -76,13 +70,13 @@ var self = this;
 			return;
 		}
 
-		var company = CompanyApi.Update(request.body, request.params.id);
+		var employee = EmployeeApi.Update(request.body, request.params.id);
 
 		response.status(200).json({
 			res: true,
 			date: new Date(),
-			company: company,
-			message: 'Empresa atualizada com sucesso!'
+			employee: employee,
+			message: 'Funcionário atualizado com sucesso!'
 		});
 	});
 
@@ -97,7 +91,7 @@ var self = this;
 			return;
 		}
 
-		if (!CompanyApi.Remove(request.params.id)) {
+		if (!EmployeeApi.Remove(request.params.id)) {
 			response.status(401).json({
 				res: false,
 				date: new Date(),
@@ -110,17 +104,17 @@ var self = this;
 		response.status(200).json({
 			res: true,
 			date: new Date(),
-			message: 'Empresa excluída com sucesso!'
+			message: 'Funcionário excluído com sucesso!'
 		});
 	});
 
 	Router.get('/', function(request, response) {
-		var companies = CompanyApi.FindAll();
+		var employees = EmployeeApi.FindAll();
 
 		response.status(200).json({
 			res: true,
 			date: new Date(),
-			companies: companies
+			employees: employees
 		});
 	});
 
@@ -135,9 +129,9 @@ var self = this;
 			return;
 		}
 
-		var company = CompanyApi.FindById(request.params.id);
+		var employee = EmployeeApi.FindById(request.params.id);
 
-		if (!company) {
+		if (!employee) {
 			response.status(401).json({
 				res: false,
 				date: new Date(),
@@ -150,7 +144,7 @@ var self = this;
 		response.status(200).json({
 			res: true,
 			date: new Date(),
-			company: company
+			employee: employee
 		});
 	});
 

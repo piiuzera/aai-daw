@@ -1,6 +1,6 @@
 "use strict";
 
-var CompanyApi 	= require('../api/CompanyApi');
+var OfficeApi	= require('../api/OfficeApi');
 var Express 	= require('express');
 var Validator 	= require('validatorjs');
 
@@ -12,14 +12,7 @@ var self = this;
 
 	Router.post('/create', function(request, response) {
 		var validation = new Validator(request.body, {
-			name 		: 'required',
-			cnpj 		: 'required',
-			street 		: 'required',
-			number 		: 'required',
-			district 	: 'required',
-			zipcode 	: 'required',
-			city 		: 'required',
-			state 		: 'required'
+			name 		: 'required'
 		});
 
 		if (validation.fails()) {
@@ -33,26 +26,19 @@ var self = this;
 			return;
 		}
 
-		var company = CompanyApi.Create(request.body);
+		var office = OfficeApi.Create(request.body);
 
 		response.status(201).json({
 			res: true,
 			date: new Date(),
-			company: company,
-			message: 'Empresa cadastrada com sucesso!'
+			office: office,
+			message: 'Cargo cadastrado com sucesso!'
 		});
 	});
 
 	Router.put('/update/:id', function(request, response) {
 		var validation = new Validator(request.body, {
-			name 		: 'required',
-			cnpj 		: 'required',
-			street 		: 'required',
-			number 		: 'required',
-			district 	: 'required',
-			zipcode 	: 'required',
-			city 		: 'required',
-			state 		: 'required'
+			name 		: 'required'
 		});
 
 		if (validation.fails()) {
@@ -76,13 +62,13 @@ var self = this;
 			return;
 		}
 
-		var company = CompanyApi.Update(request.body, request.params.id);
+		var office = OfficeApi.Update(request.body, request.params.id);
 
 		response.status(200).json({
 			res: true,
 			date: new Date(),
-			company: company,
-			message: 'Empresa atualizada com sucesso!'
+			office: office,
+			message: 'Cargo atualizado com sucesso!'
 		});
 	});
 
@@ -97,7 +83,7 @@ var self = this;
 			return;
 		}
 
-		if (!CompanyApi.Remove(request.params.id)) {
+		if (!OfficeApi.Remove(request.params.id)) {
 			response.status(401).json({
 				res: false,
 				date: new Date(),
@@ -110,17 +96,17 @@ var self = this;
 		response.status(200).json({
 			res: true,
 			date: new Date(),
-			message: 'Empresa excluída com sucesso!'
+			message: 'Cargo excluído com sucesso!'
 		});
 	});
 
 	Router.get('/', function(request, response) {
-		var companies = CompanyApi.FindAll();
+		var offices = OfficeApi.FindAll();
 
 		response.status(200).json({
 			res: true,
 			date: new Date(),
-			companies: companies
+			offices: offices
 		});
 	});
 
@@ -135,9 +121,9 @@ var self = this;
 			return;
 		}
 
-		var company = CompanyApi.FindById(request.params.id);
+		var office = OfficeApi.FindById(request.params.id);
 
-		if (!company) {
+		if (!office) {
 			response.status(401).json({
 				res: false,
 				date: new Date(),
@@ -150,7 +136,7 @@ var self = this;
 		response.status(200).json({
 			res: true,
 			date: new Date(),
-			company: company
+			office: office
 		});
 	});
 

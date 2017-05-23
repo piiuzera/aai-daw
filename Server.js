@@ -4,8 +4,10 @@ var BodyParser      = require('body-parser');
 var CompanyRouter   = require('./router/CompanyRouter');
 var CookieParser    = require('cookie-parser');
 var Cors            = require('cors');
+var EmployeeRouter  = require('./router/EmployeeRouter');
 var EJS             = require('ejs');
 var Express         = require('express');
+var OfficeRouter   	= require('./router/OfficeRouter');
 var Path            = require('path');
 
 var self = this;
@@ -26,6 +28,8 @@ var self = this;
 		App.use(Express.static(Path.join(__dirname, 'public_html')));
 
 		App.use('/api/company', CompanyRouter.GetRouter());
+		App.use('/api/employee', EmployeeRouter.GetRouter());
+		App.use('/api/office', OfficeRouter.GetRouter());
 
 		App.listen(5003, function() {
 			console.log("Server has Started: http://localhost:5003");

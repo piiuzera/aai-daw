@@ -1,0 +1,115 @@
+<div ng-init="Init()">
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="toolbar">
+                            <div class="nav navbar-nav">
+                                <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#newOffice" title="Novo Cargo">
+                                    <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                                    Novo Cargo
+                                </button>
+
+                                <button type="button" class="btn btn-default navbar-btn" title="Atualizar" ng-click="FindAllOffice()">
+                                    <i class="glyphicon glyphicon-refresh" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="office in offices">
+								<td>{{ office.name }}</td>
+								<td class="text-center">
+									<button class="btn btn-default" ng-click="FindByIdOffice(office.id)">
+										<i class="glyphicon glyphicon-pencil"></i>
+									</button>
+								</td>
+								<td class="text-center" ng-click="ConfirmDeleteOffice(office.id)">
+									<button class="btn btn-danger">
+										<i class="glyphicon glyphicon-trash"></i>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="newOffice" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						Novo Cargo
+					</h4>
+				</div>
+
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label>Nome</label>
+							<input type="text" class="form-control" ng-model="office.name" placeholder="Nome" required="required">
+						</div>
+					</form>
+				</div>
+
+				<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+				<button type="button" class="btn btn-primary" ng-click="CreateOffice($event)" data-loading-text="Salvando" class="btn btn-primary" autocomplete="off">Salvar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="editOffice" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						Editar Cargo
+					</h4>
+				</div>
+
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label>Nome</label>
+							<input type="text" class="form-control" ng-model="editOffice.name" placeholder="Nome" required="required">
+						</div>
+					</form>
+				</div>
+
+				<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+				<button type="button" class="btn btn-primary" ng-click="UpdateOffice($event, editOffice.id)" data-loading-text="Salvando" class="btn btn-primary" autocomplete="off">Salvar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

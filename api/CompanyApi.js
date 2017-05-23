@@ -1,6 +1,7 @@
 "use strict";
 
-var JsonFile = require('jsonfile');
+var EmployeeApi = require('./EmployeeApi');
+var JsonFile 	= require('jsonfile');
 
 var self = this;
 
@@ -51,6 +52,10 @@ var self = this;
 		var jsonDocument = JsonFile.readFileSync('./files/company.json');
 
 		var newJsonDocument = [];
+
+		if (EmployeeApi.FindByFkCompany(id) !== null) {
+			return false;
+		}
 
 		for (var i = 0; i < jsonDocument.length; ++i) {
 			if (jsonDocument[i].id != id) {

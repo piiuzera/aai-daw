@@ -119,7 +119,7 @@ angular.module('App')
 
 			var callbackDeleteCompany = function(id, response) {
 				if (!response.data.res) {
-					Message.Show(response.data.message, 'Erro ao Atualizar', 'error');
+					Message.Show(response.data.message, 'Erro ao Remover', 'error');
 
 					return;
 				}

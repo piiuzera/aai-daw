@@ -27,8 +27,8 @@ var self = this;
 
 		App.use('/api/company', CompanyRouter.GetRouter());
 
-		App.listen(8080, function() {
-			console.log("Server has Started: http://localhost:8080");
+		App.listen(5003, function() {
+			console.log("Server has Started: http://localhost:5003");
 		});
 	};
 

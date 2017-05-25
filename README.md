@@ -4,7 +4,7 @@
 
 ## Home Page
 
-Go to page: http://daw.amarocorp.com.br
+* [AmaroCorp](http://daw.amarocorp.com.br){:target="_blank"} - Running application
 
 ## Initializing
 
@@ -12,11 +12,7 @@ Run this command on the terminal:
 
 ```
 npm install
-```
 
-After
-
-```
 node Server.js
 ```
 

@@ -4,7 +4,7 @@
 
 ## Home Page
 
-* [AmaroCorp](http://daw.amarocorp.com.br){:target="_blank"} - Running application
+* <a href="http://daw.amarocorp.com.br" target="_blank">AmaroCorp</a> - Running application
 
 ## Initializing
 

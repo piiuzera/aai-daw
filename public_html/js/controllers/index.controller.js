@@ -10,9 +10,9 @@ angular.module('App')
 				$scope.disciplina.nome 		= 'DAW - Desenvolvimento de Aplicações WEB';
 				$scope.disciplina.professor = 'Flávio Veloso Laper';
 
-				$scope.alunos.push("Carla Victal");
-				$scope.alunos.push("Italo Bianchini");
-				$scope.alunos.push("Vinicius Emiliano");
+				$scope.alunos.push("Eric Vilar Yankous Castanheira");
+				$scope.alunos.push("Gabriel Barbosa Rocha");
+				$scope.alunos.push("Matheus Neiva Amaro");
 			};
 
 			$scope.Init = _init;
